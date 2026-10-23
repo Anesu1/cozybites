@@ -39,7 +39,7 @@ export function PhoneNavigation({ logo, links, cta }: { logo: ReactNode; links: 
   }, [open]);
 
   const line = (rotate: number): React.CSSProperties => ({
-    backgroundColor: T.white,
+    backgroundColor: T.navFg,
     borderRadius: 10,
     transform: open ? `rotate(${rotate}deg)` : "none",
     transition: "transform 0.35s cubic-bezier(0.44, 0, 0.56, 1), top 0.35s cubic-bezier(0.44, 0, 0.56, 1)",
@@ -53,7 +53,7 @@ export function PhoneNavigation({ logo, links, cta }: { logo: ReactNode; links: 
       data-framer-name={open ? "Phone Open" : "Phone"}
       data-open={open || undefined}
       style={{
-        backgroundColor: open ? T.inkFixed : "rgba(0, 0, 0, 0)",
+        backgroundColor: open ? T.pink : "rgba(0, 0, 0, 0)",
         width: "100%",
         transition: "background-color 0.35s cubic-bezier(0.44, 0, 0.56, 1)",
       }}

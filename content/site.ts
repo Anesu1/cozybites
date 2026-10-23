@@ -63,7 +63,7 @@ export const site = {
     text: "Discover cupcakes, brownies, doughnuts and custom cakes in Bulawayo. From a little treat for yourself to something special for a celebration, Cozy Bites brings comfort and sweetness to every occasion.",
     cta: { label: "Explore Our Treats", href: `#${SECTION_IDS.treats}` },
     background: {
-      base: "/images/hero-sky",
+      base: "/images/hero-sky-blush",
       widths: [512, 1024, 1672],
       width: 1672,
       height: 941,
@@ -162,7 +162,7 @@ export const site = {
     cta: { label: "Discover Our Baking", href: `#${SECTION_IDS.baking}` },
     watermark: "cozy",
     background: {
-      base: "/images/story-sky",
+      base: "/images/story-sky-blush",
       widths: [512, 847, 1122],
       width: 1122,
       height: 1402,

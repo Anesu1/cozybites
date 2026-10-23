@@ -14,7 +14,7 @@ export function NavLogo() {
       data-framer-name="Logo"
       data-framer-component-type="RichTextContainer"
       {...a}
-      style={{ ["--extracted-r6o4lv" as string]: T.white, ...a.style }}
+      style={{ ["--extracted-r6o4lv" as string]: T.navFg, ...a.style }}
     >
       <p
         dir="auto"
@@ -23,7 +23,7 @@ export function NavLogo() {
           ["--font-selector" as string]: "SW50ZXItQm9sZA==",
           ["--framer-font-size" as string]: "30px",
           ["--framer-font-weight" as string]: "700",
-          ["--framer-text-color" as string]: `var(--extracted-r6o4lv, ${T.white})`,
+          ["--framer-text-color" as string]: `var(--extracted-r6o4lv, ${T.navFg})`,
         }}
       >
         <a className="framer-text framer-styles-preset-1tau0gs" data-styles-preset="iURMpxrm8" href="#top" data-framer-page-link-current="true">
@@ -48,8 +48,8 @@ export function NavLinks({ phone = false }: { phone?: boolean }) {
             data-framer-component-type="RichTextContainer"
             {...a}
             style={{
-              ["--extracted-r6o4lv" as string]: T.white,
-              ...(phone ? { ["--extracted-1eung3n" as string]: T.white } : {}),
+              ["--extracted-r6o4lv" as string]: T.navFg,
+              ...(phone ? { ["--extracted-1eung3n" as string]: T.navFg } : {}),
               ...a.style,
             }}
           >
@@ -59,7 +59,7 @@ export function NavLinks({ phone = false }: { phone?: boolean }) {
               dir="auto"
               style={{
                 ["--framer-text-alignment" as string]: "start",
-                ["--framer-text-color" as string]: `var(${phone ? "--extracted-1eung3n" : "--extracted-r6o4lv"}, ${T.white})`,
+                ["--framer-text-color" as string]: `var(${phone ? "--extracted-1eung3n" : "--extracted-r6o4lv"}, ${T.navFg})`,
               }}
             >
               <a className="framer-text framer-styles-preset-1tau0gs" data-styles-preset="iURMpxrm8" href={link.href}>

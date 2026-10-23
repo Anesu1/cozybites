@@ -11,6 +11,8 @@ export const T = {
   // Cozy Bites brand pink (defined in app/globals.css)
   pink: "var(--cb-pink)",
   onPink: "#fff",
+  /** Navigation text: dark over the blush hero, white inside the open phone menu. */
+  navFg: "var(--cb-nav-fg)",
 } as const;
 
 // Framer breakpoint visibility classes (see the top of app/framer.css).

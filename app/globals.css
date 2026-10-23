@@ -34,6 +34,43 @@ body {
   }
 }
 
+/* Treat cards: a pink family (rose, lilac pink, cream, blush) instead of peach/green/yellow/pink. */
+body {
+  --token-af8e93b1-3edd-4439-bf50-beaa8c84f942: #fcdce4;
+  --token-f5d7e01b-e6cf-453c-a99f-06fc1cfd1e7f: #f9dff1;
+  --token-3883c825-3143-43b7-8fb7-ede714babf06: #fdebdc;
+  --token-1edbee8f-89c5-41ae-a387-26f1aacb24ea: #ffd3e3;
+}
+
+/* Footer sits on blush too. */
+footer.framer-eli3k {
+  background-color: var(--cb-pink-soft) !important;
+}
+
+/* Navigation over the blush hero: dark text (white failed contrast on pink).
+   The open phone menu is a pink panel with white text and a white CTA. */
+.framer-8pKTs {
+  --cb-nav-fg: #0c0e0f;
+}
+.framer-8pKTs[data-open] {
+  --cb-nav-fg: #fff;
+}
+/* Nav links use Framer's white link preset; point it at the nav colour. */
+.framer-r0wxg.framer-8pKTs .framer-styles-preset-1tau0gs {
+  --framer-link-text-color: var(--cb-nav-fg);
+  --framer-link-hover-text-color: var(--cb-pink);
+}
+.framer-r0wxg.framer-8pKTs[data-open] .framer-styles-preset-1tau0gs {
+  --framer-link-hover-text-color: #ffffffb3;
+}
+.framer-8pKTs[data-open] .framer-nloonb-container .framer-FN12i {
+  background-color: #fff !important;
+  --border-color: #fff !important;
+}
+.framer-8pKTs[data-open] .framer-nloonb-container :is(.framer-1lc5t0j, .framer-e6ksm9) {
+  --extracted-r6o4lv: var(--cb-pink) !important;
+}
+
 ::selection {
   background: var(--cb-pink);
   color: #fff;
