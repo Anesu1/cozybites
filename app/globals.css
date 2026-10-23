@@ -1,49 +1,454 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Site-level styles. The Framer design itself lives in framer.css (extracted
+ * verbatim); this file only adds what Framer's runtime used to do in JS
+ * (hover states) plus styles for content added during the Cozy Bites update.
+ */
+
+html body {
+  background: var(--token-b82a9e10-48e2-4683-9bea-037309294cd5);
 }
 
+/*
+ * Cozy Bites pink. Replaces the template's blue accents by re-pointing the
+ * Framer colour tokens (defined on body in framer.css). Text/background
+ * pairs below pass WCAG AA (white on --cb-pink is 4.6:1).
+ */
+body {
+  --cb-pink: #d6336c; /* buttons, display type */
+  --cb-pink-strong: #a61e4d; /* button hover */
+  --cb-pink-text: #c2255c; /* small pink text */
+  --cb-pink-line: #f06595;
+  --cb-pink-soft: #fff0f6; /* section background */
+  --cb-pink-wash: #ffdeeb; /* newsletter field, close button */
+  --token-192396b5-5763-4188-8ce1-8577647c4047: var(--cb-pink-text);
+  --token-6ff80227-bfbb-4871-8b19-5deff7df049c: var(--cb-pink-strong);
+  --token-5bfe8f71-aec9-4eee-881d-3658463bd78a: var(--cb-pink-line);
+  --token-e3e21d4d-b5e5-4775-87b9-7290b7a29913: var(--cb-pink-soft);
+}
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    --cb-pink-text: #f783ac;
+    --cb-pink-line: #f783ac;
+    --cb-pink-soft: #2b0f1c;
+    --cb-pink-wash: #3d1527;
   }
 }
 
+::selection {
+  background: var(--cb-pink);
+  color: #fff;
+}
+
+/* Pink display type: hero ticker, story watermark, footer wordmark */
+.framer-v899qy [data-text-fill],
+.framer-ci194z [data-text-fill] {
+  background-image: linear-gradient(0deg, rgba(214, 51, 108, 0) 0%, var(--cb-pink) 100%) !important;
+}
+.framer-1jld8y9 {
+  --extracted-r6o4lv: var(--cb-pink) !important;
+}
+.framer-ci194z {
+  opacity: 0.22 !important;
+}
+
+/* Newsletter field */
+.framer-1s429mj {
+  background-color: var(--cb-pink-wash) !important;
+}
+
 html {
-  height: 100%;
+  scroll-behavior: smooth;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.contents {
+  display: contents;
 }
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+/* Lists used for semantics inside Framer layouts */
+ul.framer-cvtq12,
+ul.framer-28s881,
+ul.framer-1jrzk9k,
+ul.framer-1i3qlz0 {
+  list-style: none;
   margin: 0;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
+address.cb-contact {
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--token-192396b5-5763-4188-8ce1-8577647c4047);
+  outline-offset: 3px;
+}
+
+.cb-visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Buttons: Framer "hover" variants ---------------------------------- */
+.framer-FN12i,
+.framer-T4OGZ {
+  transition:
+    background-color 0.3s cubic-bezier(0.44, 0, 0.56, 1),
+    --border-color 0.3s;
+}
+.framer-FN12i .framer-19yycb4,
+.framer-T4OGZ .framer-vl51k {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.framer-T4OGZ:disabled {
+  cursor: progress;
+}
+
+@media (hover: hover) {
+  .framer-FN12i.framer-v-j2tj7a:hover,
+  .framer-T4OGZ:hover:not(:disabled) {
+    background-color: var(--token-b5ffc4fc-b3b7-45d9-a414-f0814a687760) !important;
+    --border-color: var(--token-f989fe63-5349-464e-bd89-a43fd2a03224) !important;
+  }
+  .framer-FN12i.framer-v-1bu3nfh:hover,
+  .framer-FN12i.framer-v-exxxj9:hover {
+    background-color: var(--cb-pink-strong) !important;
+    --border-color: var(--cb-pink-strong) !important;
+  }
+  .framer-FN12i:hover .framer-19yycb4,
+  .framer-T4OGZ:hover:not(:disabled) .framer-vl51k {
+    transform: translateY(-50%);
+  }
+
+  /* Product card: image lifts and scales on hover */
+  .cb-product-image[data-settled] {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .cb-card:hover .cb-product-image[data-settled] {
+    transform: translateY(-130px) scale(0.62);
+  }
+}
+
+/* ---- Phone menu button ------------------------------------------------- */
+button.framer-v605y5 {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+button.framer-v605y5 > span {
+  display: block;
+}
+
+/* ---- Content added for Cozy Bites ------------------------------------- */
+.cb-hero-eyebrow {
+  position: relative;
+  flex: none;
+  white-space: pre;
+}
+
+.cb-section-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 640px;
+}
+.cb-section-text {
+  max-width: 520px;
+  position: relative;
+}
+
+/* Hero headline: keep the two designed lines; scale down only when space runs out. */
+@media (min-width: 810px) {
+  .framer-B15ZU .framer-htzpi2 {
+    width: max-content;
+    white-space: pre;
+  }
+}
+@media (min-width: 1470px) {
+  .framer-aHUSv .framer-htzpi2 h1.framer-styles-preset-1ytaaxo {
+    --framer-font-size: min(96px, 6.1vw);
+  }
+}
+@media (max-width: 809.98px) {
+  .framer-B15ZU .framer-5b4lke,
+  .framer-B15ZU .framer-htzpi2 {
+    width: 100%;
+  }
+  .framer-aHUSv .framer-htzpi2 h1.framer-styles-preset-1ytaaxo {
+    --framer-font-size: min(48px, 9.6vw);
+  }
+}
+
+/*
+ * Hero layout. Framer pins the treats at fixed viewport percentages and the copy
+ * to the bottom edge, so on short screens the (dark) cupcakes slid behind the
+ * black headline. Here the treats get their own stage between navigation and
+ * copy and scale to whatever room is left, so text always sits on sky.
+ */
+.framer-B15ZU .framer-cp79ot {
+  --cb-nav-h: 84px;
+  --cb-treats-w: 48cqw;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  min-height: 680px;
+}
+.framer-B15ZU .framer-cp79ot > .framer-1h8vgbj {
+  position: relative;
+  bottom: auto;
+  order: 2;
+}
+.cb-hero-stage {
+  position: relative;
+  order: 1;
+  flex: 1 1 0;
+  min-height: 0;
+  width: 100%;
+  margin-top: var(--cb-nav-h);
+  container-type: size;
+}
+.framer-B15ZU .cb-hero-stage .framer-90omut {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(var(--cb-treats-w), 123cqh);
+}
+@media (min-width: 810px) and (max-width: 1469.98px) {
+  .framer-B15ZU .framer-cp79ot {
+    --cb-treats-w: 93cqw;
+    min-height: 640px;
+  }
+}
+@media (max-width: 809.98px) {
+  .framer-B15ZU .framer-cp79ot {
+    --cb-nav-h: 64px;
+    --cb-treats-w: 130cqw;
+    min-height: 600px;
+  }
+}
+/* Landscape tablets and laptops: copy on the left, treats on the right. */
+@media (min-width: 810px) and (max-width: 1469.98px) and (min-aspect-ratio: 5/4) {
+  .cb-hero-stage {
+    position: absolute;
+    top: var(--cb-nav-h);
+    right: 0;
+    bottom: 0;
+    width: 46%;
+    margin: 0;
+  }
+  .framer-B15ZU .cb-hero-stage .framer-90omut {
+    width: min(100cqw, 123cqh);
+  }
+  .framer-B15ZU .framer-cp79ot > .framer-1h8vgbj {
+    margin-top: auto;
+    padding-right: 48%;
+  }
+  .framer-aHUSv .framer-htzpi2 h1.framer-styles-preset-1ytaaxo {
+    --framer-font-size: min(72px, 5.2vw);
+  }
+}
+
+/* Highlights: words instead of counters, sized to fit their column. */
+.framer-28s881 > li {
+  container-type: inline-size;
+  --cb-stat-max: 48px;
+}
+.cb-stat-value {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  color: var(--token-f989fe63-5349-464e-bd89-a43fd2a03224);
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-size: min(var(--cb-stat-max), 14.5cqi);
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1em;
+  white-space: nowrap;
+}
+@media (min-width: 810px) and (max-width: 1469.98px) {
+  .framer-28s881 > li {
+    --cb-stat-max: 40px;
+  }
+}
+@media (max-width: 809.98px) {
+  .framer-B15ZU .framer-28s881 {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .framer-B15ZU .framer-28s881 > li {
+    --cb-stat-max: 32px;
+    width: 100%;
+    flex: none;
+  }
+}
+
+.cb-baking-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 460px;
+}
+/* Our Baking holds more copy than the original section: keep the designed
+   heights as a minimum and let it grow; darken the overlay where text covers the photo. */
+.framer-B15ZU .framer-lsedg4.cb-section {
+  height: auto;
+  min-height: 820px;
+  place-content: flex-start;
+}
+@media (min-width: 810px) and (max-width: 1469.98px) {
+  .framer-B15ZU .framer-lsedg4.cb-section {
+    min-height: 640px;
+  }
+}
+.framer-lsedg4 .framer-zlmj5f {
+  background: linear-gradient(170deg, #0009 0%, #0006 45%, #0000 80%);
+}
+@media (max-width: 809.98px) {
+  .framer-B15ZU .framer-lsedg4.cb-section {
+    min-height: 560px;
+    padding-bottom: 240px;
+  }
+  .framer-lsedg4 [data-framer-background-image-wrapper] img {
+    object-position: 60% 100%;
+  }
+}
+.cb-eyebrow {
+  position: relative;
+}
+.cb-baking-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+
+.cb-footer-detail {
+  margin-top: 12px !important;
+  opacity: 0.75;
+}
+.framer-1spomj3 {
+  white-space: normal !important;
+}
+.cb-newsletter-heading {
+  font-weight: 600;
+}
+.cb-newsletter-text {
+  margin-top: 4px !important;
+  opacity: 0.75;
+}
+
+.cb-form-status {
+  margin: 0;
+  min-height: 1.4em;
+  font: 500 13px/1.4 "Inter", "Inter Placeholder", sans-serif;
+  color: var(--token-18c05b0d-aacd-4993-8322-3756d8a0eb00);
+}
+.cb-form-status[data-state="success"] {
+  color: var(--token-147b193d-0fbc-4b59-ae28-59080ed07ff5);
+}
+.cb-form-status[data-state="error"] {
+  color: var(--token-837d0a78-5e25-4e9c-8550-003531a22446);
+}
+
+.cb-honeypot {
+  position: absolute;
+  transform: scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Order dialog ------------------------------------------------------ */
+.cb-order {
+  width: min(480px, calc(100vw - 32px));
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+.cb-order::backdrop {
+  background: rgba(12, 14, 15, 0.55);
+  backdrop-filter: blur(4px);
+}
+.cb-order-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px 32px 32px;
+  border-radius: 28px;
+  background: var(--token-b82a9e10-48e2-4683-9bea-037309294cd5);
+  color: var(--token-f989fe63-5349-464e-bd89-a43fd2a03224);
+  --framer-text-color: var(--token-f989fe63-5349-464e-bd89-a43fd2a03224);
+}
+.cb-order[open] .cb-order-panel {
+  animation: cb-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes cb-pop {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+}
+.cb-order-panel h2 {
+  padding-right: 40px;
+}
+.cb-order-item {
+  --framer-text-color: var(--token-192396b5-5763-4188-8ce1-8577647c4047);
+}
+.cb-order-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+.cb-order-action {
+  width: 100% !important;
+}
+.cb-order-location {
+  margin-top: 4px !important;
+  text-align: center;
+  --framer-text-alignment: center;
+}
+.cb-order-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 99px;
+  background: var(--cb-pink-wash);
+  cursor: pointer;
+}
+.cb-order-close span {
+  position: absolute;
+  top: 19px;
+  left: 12px;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--token-f989fe63-5349-464e-bd89-a43fd2a03224);
+  transform: rotate(45deg);
+}
+.cb-order-close span + span {
+  transform: rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
+  }
+  .framer-FN12i .framer-19yycb4,
+  .framer-T4OGZ .framer-vl51k,
+  .cb-product-image[data-settled],
+  .cb-order[open] .cb-order-panel {
+    transition: none;
+    animation: none;
   }
 }

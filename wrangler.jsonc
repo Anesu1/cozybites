@@ -1,0 +1,21 @@
+// Cloudflare Worker: static Next.js export (./out) + /api/subscribe
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cozy-bites",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SUBSCRIBERS",
+      "id": "826be3af4f8145db9f501c191dac120c"
+    }
+  ],
+  "observability": { "enabled": true }
+}
