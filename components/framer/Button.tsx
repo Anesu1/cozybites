@@ -5,8 +5,8 @@ export type ButtonVariant = "primary" | "primaryFixed" | "secondary";
 
 // Mirrors the Framer "Button" component variants (hover states live in globals.css).
 const VARIANTS: Record<ButtonVariant, { cls: string; name: string; bg: string; border: string; label: string }> = {
-  primary: { cls: "framer-v-exxxj9", name: "Primary", bg: T.pink, border: T.pink, label: T.onPink },
-  primaryFixed: { cls: "framer-v-1bu3nfh", name: "Primary Fixed", bg: T.pink, border: T.pink, label: T.onPink },
+  primary: { cls: "framer-v-exxxj9", name: "Primary", bg: T.pink, border: T.pinkEdge, label: T.onPink },
+  primaryFixed: { cls: "framer-v-1bu3nfh", name: "Primary Fixed", bg: T.pink, border: T.pinkEdge, label: T.onPink },
   secondary: { cls: "framer-v-j2tj7a", name: "Secondary", bg: T.surface, border: T.border, label: T.ink },
 };
 

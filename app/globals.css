@@ -9,28 +9,37 @@ html body {
 }
 
 /*
- * Cozy Bites pink. Replaces the template's blue accents by re-pointing the
- * Framer colour tokens (defined on body in framer.css). Text/background
- * pairs below pass WCAG AA (white on --cb-pink is 4.6:1).
+ * Cozy Bites palette: soft pinks with cocoa text instead of the template's
+ * blue accents and near-black. Re-points the Framer colour tokens (defined on
+ * body in framer.css). Text pairs pass WCAG AA: plum on button pink 6.2:1,
+ * cocoa on blush sky 7:1+, pink labels on blush 5.2:1.
  */
 body {
-  --cb-pink: #d6336c; /* buttons, display type */
-  --cb-pink-strong: #a61e4d; /* button hover */
-  --cb-pink-text: #c2255c; /* small pink text */
-  --cb-pink-line: #f06595;
+  --cb-pink: #f4a6c1; /* buttons */
+  --cb-pink-strong: #f08fb3; /* button hover */
+  --cb-pink-edge: #e58aae; /* button outline, keeps shape visible on blush */
+  --cb-on-pink: #5c2440; /* plum labels on pink */
+  --cb-pink-display: #f3a0c0; /* wordmark, ticker, watermark */
+  --cb-pink-text: #a8436c; /* small pink text */
+  --cb-pink-line: #f4a6c1;
   --cb-pink-soft: #fff0f6; /* section background */
-  --cb-pink-wash: #ffdeeb; /* newsletter field, close button */
+  --cb-pink-wash: #ffe4ee; /* newsletter field, close button */
+  --cb-cocoa: #3b2a2f; /* replaces near-black text */
   --token-192396b5-5763-4188-8ce1-8577647c4047: var(--cb-pink-text);
   --token-6ff80227-bfbb-4871-8b19-5deff7df049c: var(--cb-pink-strong);
   --token-5bfe8f71-aec9-4eee-881d-3658463bd78a: var(--cb-pink-line);
   --token-e3e21d4d-b5e5-4775-87b9-7290b7a29913: var(--cb-pink-soft);
+  --token-f989fe63-5349-464e-bd89-a43fd2a03224: var(--cb-cocoa);
+  --token-2a3aac05-455c-40b7-b073-c9ffbf203fe2: var(--cb-cocoa);
 }
 @media (prefers-color-scheme: dark) {
   body {
-    --cb-pink-text: #f783ac;
-    --cb-pink-line: #f783ac;
+    --cb-pink-text: #f7a1c2;
+    --cb-pink-line: #f7a1c2;
     --cb-pink-soft: #2b0f1c;
     --cb-pink-wash: #3d1527;
+    /* body text stays light in dark mode (Framer's own dark value) */
+    --token-f989fe63-5349-464e-bd89-a43fd2a03224: #f6f1ea;
   }
 }
 
@@ -47,45 +56,39 @@ footer.framer-eli3k {
   background-color: var(--cb-pink-soft) !important;
 }
 
-/* Navigation over the blush hero: dark text (white failed contrast on pink).
-   The open phone menu is a pink panel with white text and a white CTA. */
+/* Navigation over the blush hero uses cocoa text (white failed contrast on pink).
+   The open phone menu is a soft pink panel with plum text and a white CTA. */
 .framer-8pKTs {
-  --cb-nav-fg: #0c0e0f;
+  --cb-nav-fg: var(--cb-cocoa);
 }
 .framer-8pKTs[data-open] {
-  --cb-nav-fg: #fff;
+  --cb-nav-fg: var(--cb-on-pink);
 }
 /* Nav links use Framer's white link preset; point it at the nav colour. */
 .framer-r0wxg.framer-8pKTs .framer-styles-preset-1tau0gs {
   --framer-link-text-color: var(--cb-nav-fg);
-  --framer-link-hover-text-color: var(--cb-pink);
-}
-.framer-r0wxg.framer-8pKTs[data-open] .framer-styles-preset-1tau0gs {
-  --framer-link-hover-text-color: #ffffffb3;
+  --framer-link-hover-text-color: var(--cb-pink-text);
 }
 .framer-8pKTs[data-open] .framer-nloonb-container .framer-FN12i {
   background-color: #fff !important;
   --border-color: #fff !important;
 }
-.framer-8pKTs[data-open] .framer-nloonb-container :is(.framer-1lc5t0j, .framer-e6ksm9) {
-  --extracted-r6o4lv: var(--cb-pink) !important;
-}
 
 ::selection {
   background: var(--cb-pink);
-  color: #fff;
+  color: var(--cb-on-pink);
 }
 
 /* Pink display type: hero ticker, story watermark, footer wordmark */
 .framer-v899qy [data-text-fill],
 .framer-ci194z [data-text-fill] {
-  background-image: linear-gradient(0deg, rgba(214, 51, 108, 0) 0%, var(--cb-pink) 100%) !important;
+  background-image: linear-gradient(0deg, transparent 0%, var(--cb-pink-display) 100%) !important;
 }
 .framer-1jld8y9 {
-  --extracted-r6o4lv: var(--cb-pink) !important;
+  --extracted-r6o4lv: var(--cb-pink-display) !important;
 }
 .framer-ci194z {
-  opacity: 0.22 !important;
+  opacity: 0.35 !important;
 }
 
 /* Newsletter field */

@@ -10,8 +10,9 @@ export const T = {
   placeholder: "var(--token-18c05b0d-aacd-4993-8322-3756d8a0eb00)",
   // Cozy Bites brand pink (defined in app/globals.css)
   pink: "var(--cb-pink)",
-  onPink: "#fff",
-  /** Navigation text: dark over the blush hero, white inside the open phone menu. */
+  pinkEdge: "var(--cb-pink-edge)",
+  onPink: "var(--cb-on-pink)",
+  /** Navigation text: cocoa over the blush hero, plum inside the open phone menu. */
   navFg: "var(--cb-nav-fg)",
 } as const;
 

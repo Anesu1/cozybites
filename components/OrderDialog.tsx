@@ -25,7 +25,7 @@ function OrderLink({ href, label, variant, external }: { href: string; label: st
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      style={buttonStyle(dark ? T.pink : T.surface, dark ? T.pink : T.border)}
+      style={buttonStyle(dark ? T.pink : T.surface, dark ? T.pinkEdge : T.border)}
     >
       <ButtonLabel label={label} color={dark ? T.onPink : T.ink} classes={["framer-kypr4p", "framer-19yycb4", "framer-1lc5t0j", "framer-e6ksm9"]} />
     </a>
